@@ -5,7 +5,9 @@ import Tetromino
 class Game:
     def __init__(self):
         self.tetromino_shapes = utils.Shapes.SHAPES  # List of all Tetromino shapes
-        self.current_tetromino = None
+        self.current_tetromino = None # Current non placed piece at board
+        self.board = None # Board 
+        self.screen = None # Screen
 
     def getPiece(self):
         # Return a random Tetromino shape

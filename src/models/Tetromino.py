@@ -1,5 +1,3 @@
-import utils.Shapes as shapes
-
 class Tetromino:
     def __init__(self, shape):
         self.shape = shape  # A list of cell coordinates (x, y)
