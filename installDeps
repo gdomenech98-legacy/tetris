@@ -1,0 +1,5 @@
+#!/bin/bash
+# Enable virtual environment
+./start_venv
+# Install deps
+pip install -r requirements.txt
