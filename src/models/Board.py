@@ -26,7 +26,7 @@ class Board:
         for row in range(board_rows):
             for col in range(board_cols):
                 cell_value = self.board[row][col]
-                cell_color = getCellColor(cell_value)  # Implement this function
+                cell_color = getCellColor(cell_value)
                 cell_rect = pygame.Rect(
                     BOARD_POS_X + col * CELL_SIZE,
                     BOARD_POS_Y + row * CELL_SIZE,

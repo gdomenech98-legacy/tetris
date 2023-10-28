@@ -1,13 +1,32 @@
 import random
-import utils.Shapes
-import Tetromino
+from ..utils.Shapes import SHAPES
+from .Tetromino import Tetromino
 
 class Game:
-    def __init__(self):
-        self.tetromino_shapes = utils.Shapes.SHAPES  # List of all Tetromino shapes
+    def __init__(self, board, screen):
+        self.tetromino_shapes = SHAPES  # List of all Tetromino shapes
         self.current_tetromino = None # Current non placed piece at board
-        self.board = None # Board 
-        self.screen = None # Screen
+        self.board = board # Board 
+        self.screen = screen # Screen
+
+    def getCurrentTetromino(self):
+        return self.current_tetromino
+    
+    def clearCurrentTetromino(self):
+        self.current_tetromino = None
+
+    def isCurrentTetromino(self):
+        return self.current_tetromino
+    
+    def getBoard(self):
+        return self.board
+    
+    def getScreen(self):
+        return self.screen
+    
+    def clearScreen(self):
+       # Clear the screen
+       self.screen.fill((255, 255, 255))
 
     def getPiece(self):
         # Return a random Tetromino shape
