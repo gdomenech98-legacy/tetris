@@ -26,7 +26,6 @@ def main():
         game.getBoard().drawBoard(game.getScreen())
         # Draw the Tetromino on the game board
         if (not game.isCurrentTetromino()): # Checks that has current tetromino
-            print("Has no tetromino spawning new one")
             game.spawnTetromino()
         
         currentPiece = game.getCurrentTetromino()

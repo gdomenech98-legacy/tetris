@@ -26,7 +26,7 @@ class Game:
     
     def clearScreen(self):
        # Clear the screen
-       self.screen.fill((255, 255, 255))
+       self.screen.fill((74, 74, 74))
 
     def getPiece(self):
         # Return a random Tetromino shape
