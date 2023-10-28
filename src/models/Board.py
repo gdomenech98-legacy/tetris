@@ -21,8 +21,10 @@ class Board:
 
     def drawBoard(self, screen):
         # Draw the game board
-        for row in range(BOARD_HEIGHT):
-            for col in range(BOARD_WIDTH):
+        board_rows = len(self.board)
+        board_cols = len(self.board[0])
+        for row in range(board_rows):
+            for col in range(board_cols):
                 cell_value = self.board[row][col]
                 cell_color = getCellColor(cell_value)  # Implement this function
                 cell_rect = pygame.Rect(
