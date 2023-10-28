@@ -20,7 +20,7 @@ def main():
         # Clear the screen
         screen.fill((0, 0, 0))
         # draw board
-        board.drawBoard()
+        board.drawBoard(screen)
         # Update the display
         pygame.display.flip()
 
