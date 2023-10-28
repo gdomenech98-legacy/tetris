@@ -1,7 +1,5 @@
 import pygame
 from src.models.Board import Board
-from src.utils.Shapes import L_SHAPE
-from src.models.Tetromino import Tetromino
 from src.models.Game import Game
 
 
