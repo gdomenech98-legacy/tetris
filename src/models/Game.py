@@ -9,6 +9,10 @@ class Game:
         self.board = board # Board model
         self.screen = screen # Screen obj
 
+    def run(self):
+        self.render()
+        self.update()
+
     def update(self):
         # Update the game state in each frame, including:
         # 0- Check that have current Tetromino (if not spawn new one)
