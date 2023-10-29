@@ -41,21 +41,18 @@ def main():
                 if(cell == 1):
                     # Collision type 1: 
                     if(cell and game.getBoard().board[row_index + currentPiece.x][col_index + currentPiece.y]): # checks that cell is fullfilled 1
-                        hasCollision = True
-                        print("Collision detected with placed board pieces!")
+                        print("Collision")
+                    #     game.clearCurrentTetromino()
+
                     # Collision type 2: inferior border of board
                     elif(cell and (currentPiece.x == game.getBoard().getWidth() or currentPiece.y == game.getBoard().getHeight())):
-                        hasCollision = True
-                        print("Collision detected with bottom wall")
+                        print("Collision")
+                    #     game.clearCurrentTetromino()
                     else:
-                        print("Previous board:: ",game.getBoard().board)
-                        game.getBoard().board[row_index+currentPiece.x][col_index+currentPiece.y] = 3 # Replace index for the color of the piexe
-                        print("Previous board 2222:: ",game.getBoard().board)
+                        print(f"x,y::: {row_index} : {col_index}")
+                        game.getBoard().board[currentPiece.x + row_index ][currentPiece.y+ col_index] = 3 # Replace index for the color of the piexe
+                        currentPiece.move_down()
 
-        if(not hasCollision): # if no collide move_down due to frame
-            currentPiece.move_down()
-        else: # Remove currentPiece
-            game.clearCurrentTetromino()
         pygame.display.flip() # Update the display
         clock.tick(FPS) # Control the frame rate
     # Quit Pygame
