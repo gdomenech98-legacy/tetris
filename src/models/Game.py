@@ -48,6 +48,7 @@ class Game:
         # 4- Checking for completed rows (deletes completed rows and replace new positions)
         # 5- Game over condition (checks if have end game condition)
         self.isGameOver()
+    
     def render(self):
         self.renderBoard()
         self.renderCurrentTetromino()
@@ -97,7 +98,9 @@ class Game:
 
     def isCollision(self): 
         tetromino = self.getCurrentTetromino()
-        
+        board = self.getBoard().board
+        board_w = self.getBoard().getWidth()
+        board_h = self.getBoard().getHeight()
         if(not tetromino):
             return False
         
@@ -105,11 +108,14 @@ class Game:
             for ci, cell in enumerate(row):
                 if(cell == 1): 
                     # Check if the cell is within the board boundaries
+                    board_x = tetromino.x + ci
+                    board_y = tetromino.y + ri
                     if (
-                        (tetromino.y + ri + 1) >= self.getBoard().getHeight()
-                        or tetromino.x + ci < 0
-                        or (tetromino.x + ci + 1) >= self.getBoard().getWidth()
-                        or self.getBoard().board[tetromino.y + ri + 1][tetromino.x + ci + 1] >= 1
+                        board_x < 0
+                        or board_x >= board_w
+                        or board_y >= board_h
+                        or board_y >= 0
+                        and board[board_y][board_x] > 0
                     ):
                         return True
         return False
