@@ -15,12 +15,12 @@ S_SHAPE = [[0, 1, 1],
 Z_SHAPE = [[1, 1, 0],
            [0, 1, 1]]
 # Define array of shapes
-SHAPES = [
-    I_SHAPE,
-    J_SHAPE,
-    L_SHAPE,
-    O_SHAPE,
-    T_SHAPE,
-    S_SHAPE,
-    Z_SHAPE,
-]
+SHAPES = {
+    "I_SHAPE": I_SHAPE,
+    "J_SHAPE": J_SHAPE,
+    "L_SHAPE": L_SHAPE,
+    "O_SHAPE": O_SHAPE,
+    "T_SHAPE": T_SHAPE,
+    "S_SHAPE": S_SHAPE,
+    "Z_SHAPE": T_SHAPE,
+}

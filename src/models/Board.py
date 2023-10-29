@@ -13,11 +13,22 @@ SCREEN_WIDTH = 300 + (CELL_SIZE * 2)
 SCREEN_HEIGHT = 600 + (CELL_SIZE * 2)
 class Board:
     def __init__(self):
+        self.board_width = BOARD_WIDTH
+        self.board_height = BOARD_HEIGHT
         self.board = [[0] * BOARD_WIDTH for _ in range(BOARD_HEIGHT)] # Initialize the game board grid
+
+    def getWidth(self):
+        return self.board_width
+    
+    def getHeight(self):
+        return self.board_height
 
     def getScreen(self, height = SCREEN_HEIGHT, width = SCREEN_WIDTH):
         screen = pygame.display.set_mode((width, height)) # Set up the screen (create a window)
         return screen
+
+    def setBoard(self, board): 
+        self.board = board
 
     def drawBoard(self, screen):
         # Draw the game board
