@@ -1,6 +1,6 @@
 # Constants for the game board
 import pygame
-from src.utils.Cells import getCellColor
+from ..utils.Cells import getCellColor
 
 # Board
 BOARD_WIDTH = 10  # Number of columns
@@ -15,8 +15,11 @@ class Board:
     def __init__(self):
         self.board_width = BOARD_WIDTH
         self.board_height = BOARD_HEIGHT
-        self.board = [[0] * BOARD_WIDTH for _ in range(BOARD_HEIGHT)] # Initialize the game board grid
+        self.board = self.emptyBoard() # Initialize the game board grid
 
+    def emptyBoard(self):
+        return [[0] * BOARD_WIDTH for _ in range(BOARD_HEIGHT)]
+    
     def getWidth(self):
         return self.board_width
     
@@ -32,15 +35,12 @@ class Board:
 
     def drawBoard(self, screen):
         # Draw the game board
-        board_rows = len(self.board)
-        board_cols = len(self.board[0])
-        for row in range(board_rows):
-            for col in range(board_cols):
-                cell_value = self.board[row][col]
-                cell_color = getCellColor(cell_value)
+        for ri, row in enumerate(self.board):
+            for ci, cell in enumerate(row):
+                cell_color = getCellColor(cell)
                 cell_rect = pygame.Rect(
-                    BOARD_POS_X + col * CELL_SIZE,
-                    BOARD_POS_Y + row * CELL_SIZE,
+                    BOARD_POS_X + ci * CELL_SIZE,
+                    BOARD_POS_Y + ri * CELL_SIZE,
                     CELL_SIZE,
                     CELL_SIZE
                 )

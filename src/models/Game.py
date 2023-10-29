@@ -1,4 +1,6 @@
 import random
+
+from .Board import Board
 from ..utils.Shapes import SHAPES
 from .Tetromino import Tetromino
 
@@ -9,7 +11,9 @@ class Game:
         self.board = board # Board model
         self.screen = screen # Screen obj
 
+
     def run(self):
+        self.clearScreen()
         self.render()
         self.update()
 
@@ -20,17 +24,30 @@ class Game:
             self.spawnTetromino()
         # 1- Moving the current Tetromino (down 1 position, user movements like rotate and down)
         # 2- Collision detection: Checks that current tetromino doesn't collide with board
-        if(not self.isCollision()): 
-            # 3- Update game board with piece
+        # 3- Update game board with piece
+        if(self.isCollision()):  # Place piece if collide
             self.place_piece()
+        else: # if no collide move down the next position
             self.getCurrentTetromino().move_down()
+            
+
         # 4- Checking for completed rows (deletes completed rows and replace new positions)
         # 5- Game over condition (checks if have end game condition)
 
     def render(self):
-        # Render the game board and the current Tetromino on the screen
-        self.getBoard().drawBoard(self.getScreen())
+        self.renderBoard()
+        self.renderCurrentTetromino()
     
+    def renderBoard(self):
+        self.getBoard().drawBoard(self.getScreen())
+
+    def renderCurrentTetromino(self):
+        # Render the game board and the current Tetromino on the screen
+        tmpBoard = Game(Board(), self.screen)
+        tmpBoard.current_tetromino = self.getCurrentTetromino()
+        tmpBoard.place_piece()
+        tmpBoard.getBoard().drawBoard(self.getScreen())
+
     def handle_input(self, event):
         # Handle user input, such as moving the current Tetromino left/right, rotating, etc.
         return
