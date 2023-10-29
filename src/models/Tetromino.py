@@ -1,10 +1,11 @@
 from ..utils.Shapes import SHAPES
+from .Board import BOARD_WIDTH
 class Tetromino:
     def __init__(self, type):
         self.type = type
         self.shape = SHAPES[type]  # A list of cell coordinates (x, y)
         self.rotation = 0  # Current rotation state (0, 1, 2, or 3)
-        self.x = 0  # Current x-coordinate
+        self.x = int(BOARD_WIDTH/2) # Current x-coordinate
         self.y = 0  # Current y-coordinate
 
     def rotate(self):

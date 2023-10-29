@@ -11,16 +11,21 @@ class Game:
 
     def update(self):
         # Update the game state in each frame, including:
-        # - Moving the current Tetromino (down 1 position, user movements like rotate and down)
-        # - Collision detection (detects when piece collides)
-        # - Updating the game board (updates board with the piece)
-        # - Checking for completed rows (deletes completed rows and replace new positions)
-        # - Game over condition (checks if have end game condition)
-        return
+        # 0- Check that have current Tetromino (if not spawn new one)
+        if (not self.isCurrentTetromino()): # Checks that has current tetromino
+            self.spawnTetromino()
+        # 1- Moving the current Tetromino (down 1 position, user movements like rotate and down)
+        # 2- Collision detection: Checks that current tetromino doesn't collide with board
+        if(not self.isCollision()): 
+            # 3- Update game board with piece
+            self.place_piece()
+            self.getCurrentTetromino().move_down()
+        # 4- Checking for completed rows (deletes completed rows and replace new positions)
+        # 5- Game over condition (checks if have end game condition)
 
     def render(self):
         # Render the game board and the current Tetromino on the screen
-        return
+        self.getBoard().drawBoard(self.getScreen())
     
     def handle_input(self, event):
         # Handle user input, such as moving the current Tetromino left/right, rotating, etc.
@@ -54,3 +59,33 @@ class Game:
         shape = self.getPiece()
         self.current_tetromino = Tetromino(shape)
         return self.current_tetromino
+
+    def isCollision(self): 
+        collide = False
+        tetromino = self.getCurrentTetromino()
+        
+        if(not tetromino):
+            return collide
+        
+        for ri, row in enumerate(tetromino.shape):
+            for ci, cell in enumerate(row):
+                if(cell == 1): 
+                    # Check if the cell is within the board boundaries
+                    if (
+                        tetromino.y + ri >= self.getBoard().getHeight()
+                        or tetromino.x + ci < 0
+                        or tetromino.x + ci >= self.getBoard().getWidth()
+                        or self.getBoard().board[tetromino.y + ri][tetromino.x + ci] == 1
+                    ):
+                        collide = True
+        return collide
+
+    def place_piece(self):
+        tetromino = self.getCurrentTetromino()
+        if(not tetromino): return
+        for ri, row in enumerate(tetromino.shape):
+            for ci, cell in enumerate(row):
+                if cell == 1:
+                    # Check if the cell is within the board boundaries
+                    if 0 <= tetromino.y + ri < self.getBoard().getHeight() and 0 <= tetromino.x + ci < self.getBoard().getWidth():
+                        self.getBoard().board[tetromino.y + ri][tetromino.x + ci] = 3  # Fill the cell with the piece
