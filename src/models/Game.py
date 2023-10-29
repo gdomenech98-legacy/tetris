@@ -10,6 +10,7 @@ class Game:
         self.current_tetromino = None # Current non placed piece at board
         self.board = board # Board model
         self.screen = screen # Screen obj
+        self.running = True # False when Game over
 
     @staticmethod
     def initialize():
@@ -20,6 +21,9 @@ class Game:
         game.clearScreen()
         return game
 
+    def isRunning(self):
+        return self.running
+    
     def run(self):
         self.clearScreen()
         self.render()
@@ -43,7 +47,7 @@ class Game:
             
         # 4- Checking for completed rows (deletes completed rows and replace new positions)
         # 5- Game over condition (checks if have end game condition)
-
+        self.isGameOver()
     def render(self):
         self.renderBoard()
         self.renderCurrentTetromino()
@@ -92,11 +96,10 @@ class Game:
         return self.current_tetromino
 
     def isCollision(self): 
-        collide = False
         tetromino = self.getCurrentTetromino()
         
         if(not tetromino):
-            return collide
+            return False
         
         for ri, row in enumerate(tetromino.shape):
             for ci, cell in enumerate(row):
@@ -108,10 +111,15 @@ class Game:
                         or (tetromino.x + ci + 1) >= self.getBoard().getWidth()
                         or self.getBoard().board[tetromino.y + ri + 1][tetromino.x + ci + 1] >= 1
                     ):
-                        collide = True
-                        return collide
-        return collide
+                        return True
+        return False
 
+    def isGameOver(self):
+        # Check if the top row of the board contains any filled cells
+        top_row = self.getBoard().board[0]
+        if (any(cell > 0 for cell in top_row)):
+            self.running = False
+    
     def place_piece(self):
         tetromino = self.getCurrentTetromino()
         if(not tetromino): return
