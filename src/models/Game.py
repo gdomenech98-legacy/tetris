@@ -11,6 +11,14 @@ class Game:
         self.board = board # Board model
         self.screen = screen # Screen obj
 
+    @staticmethod
+    def initialize():
+        # Set up the screen (create a window)
+        board = Board()
+        screen = board.getScreen()
+        game = Game(board, screen)
+        game.clearScreen()
+        return game
 
     def run(self):
         self.clearScreen()

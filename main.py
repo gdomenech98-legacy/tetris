@@ -6,18 +6,10 @@ from src.models.Game import Game
 FPS = 1 # Set the desired frame rate (e.g., 1 frame per second)
 clock = pygame.time.Clock() # Create a Clock object to control the frame rate
 
-def initialize():
+def main():
     # Initialize Pygame
     pygame.init()
-    # Set up the screen (create a window)
-    board = Board()
-    screen = board.getScreen()
-    game = Game(board, screen)
-    game.clearScreen()
-    return game
-
-def main():
-    game = initialize()
+    game = Game.initialize()
     # Main game loop
     running = True
     while running:
