@@ -1,6 +1,6 @@
 # Constants for the game board
 import pygame
-from ..utils.Cells import getCellColor
+from ..utils.Shapes import getCellColor
 
 # Board
 BOARD_WIDTH = 10  # Number of columns

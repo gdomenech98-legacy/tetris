@@ -20,3 +20,9 @@ class Tetromino:
 
     def move_down(self):
         self.y += 1
+
+    def getColorKey(self):
+        for index, key in enumerate(SHAPES):
+            if key == self.type:
+                return (index + 1) # Colors start from index 1
+        return 0 # Return default value that its index 0 -> black

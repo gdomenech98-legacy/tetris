@@ -117,4 +117,4 @@ class Game:
                 if cell == 1:
                     # Check if the cell is within the board boundaries
                     if 0 <= tetromino.y + ri < self.getBoard().getHeight() and 0 <= tetromino.x + ci < self.getBoard().getWidth():
-                        self.getBoard().board[tetromino.y + ri][tetromino.x + ci] = 3  # Fill the cell with the piece
+                        self.getBoard().board[tetromino.y + ri][tetromino.x + ci] = Tetromino(tetromino.type).getColorKey()  # Fill the cell with the piece
