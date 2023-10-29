@@ -34,11 +34,13 @@ class Game:
         # 2- Collision detection: Checks that current tetromino doesn't collide with board
         # 3- Update game board with piece
         if(self.isCollision()):  # Place piece if collide
+            print('COLLISION!')
             self.place_piece()
+            self.clearCurrentTetromino()
         else: # if no collide move down the next position
+            print("Move down")
             self.getCurrentTetromino().move_down()
             
-
         # 4- Checking for completed rows (deletes completed rows and replace new positions)
         # 5- Game over condition (checks if have end game condition)
 
@@ -101,10 +103,10 @@ class Game:
                 if(cell == 1): 
                     # Check if the cell is within the board boundaries
                     if (
-                        tetromino.y + ri >= self.getBoard().getHeight()
+                        (tetromino.y + ri + 1) >= self.getBoard().getHeight()
                         or tetromino.x + ci < 0
-                        or tetromino.x + ci >= self.getBoard().getWidth()
-                        or self.getBoard().board[tetromino.y + ri][tetromino.x + ci] == 1
+                        or (tetromino.x + ci + 1) >= self.getBoard().getWidth()
+                        or self.getBoard().board[tetromino.y + ri + 1 ][tetromino.x + ci + 1] >= 1
                     ):
                         collide = True
         return collide
