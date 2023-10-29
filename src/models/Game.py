@@ -106,18 +106,16 @@ class Game:
         
         for ri, row in enumerate(tetromino.shape):
             for ci, cell in enumerate(row):
-                if(cell == 1): 
-                    # Check if the cell is within the board boundaries
-                    board_x = tetromino.x + ci
-                    board_y = tetromino.y + ri
+                if (cell == 1):
+                    board_x = tetromino.x + ci + 1
+                    board_y = tetromino.y + ri + 1 
                     if (
                         board_x < 0
                         or board_x >= board_w
                         or board_y >= board_h
-                        or board_y >= 0
-                        and board[board_y][board_x] > 0
+                        or board_y >= 0 and board[board_y][board_x] > 0
                     ):
-                        return True
+                        return True 
         return False
 
     def isGameOver(self):
