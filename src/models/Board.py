@@ -9,8 +9,8 @@ CELL_SIZE = 30  # Size of each cell in pixels
 BOARD_POS_X = 30  # X-coordinate of the top-left corner of the board
 BOARD_POS_Y = 30  # Y-coordinate of the top-left corner of the board
 # Screen
-SCREEN_WIDTH = 300 + (CELL_SIZE * 2)
-SCREEN_HEIGHT = 600 + (CELL_SIZE * 2)
+SCREEN_WIDTH = 300
+SCREEN_HEIGHT = 600
 class Board:
     def __init__(self):
         self.board_width = BOARD_WIDTH
@@ -37,13 +37,14 @@ class Board:
         # Draw the game board
         for ri, row in enumerate(self.board):
             for ci, cell in enumerate(row):
-                cell_color = getCellColor(cell)
-                cell_rect = pygame.Rect(
-                    BOARD_POS_X + ci * CELL_SIZE,
-                    BOARD_POS_Y + ri * CELL_SIZE,
-                    CELL_SIZE,
-                    CELL_SIZE
-                )
-                pygame.draw.rect(screen, cell_color, cell_rect)
+                if(cell):
+                    cell_color = getCellColor(cell)
+                    cell_rect = pygame.Rect(
+                        BOARD_POS_X + ci * CELL_SIZE,
+                        BOARD_POS_Y + ri * CELL_SIZE,
+                        CELL_SIZE,
+                        CELL_SIZE
+                    )
+                    pygame.draw.rect(screen, cell_color, cell_rect)
 
     

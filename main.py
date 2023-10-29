@@ -3,7 +3,7 @@ from src.models.Board import Board
 from src.models.Game import Game
 
 
-FPS = 1 # Set the desired frame rate (e.g., 1 frame per second)
+FPS = 3 # Set the desired frame rate (e.g., 1 frame per second)
 clock = pygame.time.Clock() # Create a Clock object to control the frame rate
 
 def main():

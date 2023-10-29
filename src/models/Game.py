@@ -79,7 +79,7 @@ class Game:
     
     def clearScreen(self):
        # Clear the screen
-       self.screen.fill((74, 74, 74))
+       self.screen.fill((0, 0, 0))
 
     def getPiece(self):
         # Return a random Tetromino shape
@@ -106,9 +106,10 @@ class Game:
                         (tetromino.y + ri + 1) >= self.getBoard().getHeight()
                         or tetromino.x + ci < 0
                         or (tetromino.x + ci + 1) >= self.getBoard().getWidth()
-                        or self.getBoard().board[tetromino.y + ri + 1 ][tetromino.x + ci + 1] >= 1
+                        or self.getBoard().board[tetromino.y + ri + 1][tetromino.x + ci + 1] >= 1
                     ):
                         collide = True
+                        return collide
         return collide
 
     def place_piece(self):
