@@ -1,4 +1,4 @@
-# Put in practise some python skills
+# Put in practise some python skills 
 
 Python tetris example using **venv**
 Enable venv:
